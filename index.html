@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Prompt Writer for Prompt Library</title>
+    <link rel="stylesheet" href="styles.css?v=20260607-2">
+    <script>
+      (function () {
+        try {
+          var storedTheme = localStorage.getItem("prompt-writer-theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+        } catch (error) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+    <script src="app.js?v=20260607-2" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-content">
+        <div>
+          <p class="eyebrow">SDLC Prompt Catalog</p>
+          <h1>Prompt Writer</h1>
+        </div>
+        <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to dark mode" title="Switch theme">
+          <span class="theme-toggle__icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="toolbar" aria-labelledby="catalogTitle">
+        <div>
+          <h2 id="catalogTitle">Prompt templates by SDLC phase</h2>
+          <p id="resultSummary" class="summary" aria-live="polite">Loading prompt templates...</p>
+        </div>
+        <form class="search-form" role="search">
+          <label for="searchInput">Search by tag</label>
+          <input
+            id="searchInput"
+            name="search"
+            type="search"
+            placeholder="Try discovery, testing, refactor"
+            autocomplete="off"
+            disabled
+          >
+        </form>
+      </section>
+
+      <div class="workspace">
+        <div class="catalog-pane">
+          <section id="statusRegion" class="status-region" aria-live="polite">
+            <p class="status-card">Loading prompt catalog...</p>
+          </section>
+
+          <section id="catalog" class="catalog" aria-label="Prompt catalog" hidden></section>
+        </div>
+
+        <aside class="editor-pane" id="templateEditor" aria-labelledby="editorTitle">
+          <div class="editor-empty" id="editorEmpty">
+            <h2 id="editorTitle">Prompt editor</h2>
+            <p>Select a template to fill placeholders inline and generate a prompt.</p>
+          </div>
+
+          <article class="editor-content" id="editorContent" hidden>
+            <header class="editor-header">
+              <div>
+                <p class="editor-phase" id="editorPhase"></p>
+                <h2 id="selectedTemplateTitle">Prompt editor</h2>
+              </div>
+              <button class="icon-button" type="button" id="closeEditor" aria-label="Clear selected template">
+                <span aria-hidden="true">x</span>
+              </button>
+            </header>
+
+            <section class="editor-tags" aria-label="Template tags">
+              <ul class="tag-list" id="editorTags"></ul>
+            </section>
+
+            <section aria-labelledby="generatedPromptTitle" class="generated-section">
+              <div class="section-heading">
+                <h3 id="generatedPromptTitle">Generated prompt</h3>
+                <button class="copy-button" type="button" id="copyPrompt">Copy</button>
+              </div>
+              <div
+                id="inlinePrompt"
+                class="inline-prompt"
+                role="group"
+                aria-label="Generated prompt with editable placeholders"
+              ></div>
+              <textarea id="generatedPrompt" class="visually-hidden" readonly aria-label="Generated prompt text"></textarea>
+              <p class="feedback" id="copyFeedback" aria-live="polite"></p>
+            </section>
+          </article>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>
