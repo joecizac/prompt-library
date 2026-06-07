@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <title>Prompt Writer for Prompt Library</title>
-    <link rel="stylesheet" href="styles.css?v=20260607-2">
+    <link rel="stylesheet" href="styles.css?v=20260607-modal-1">
     <script>
       (function () {
         try {
@@ -17,7 +17,7 @@
         }
       })();
     </script>
-    <script src="app.js?v=20260607-2" defer></script>
+    <script src="app.js?v=20260607-modal-1" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -51,53 +51,53 @@
         </form>
       </section>
 
-      <div class="workspace">
-        <div class="catalog-pane">
-          <section id="statusRegion" class="status-region" aria-live="polite">
-            <p class="status-card">Loading prompt catalog...</p>
+      <section id="statusRegion" class="status-region" aria-live="polite">
+        <p class="status-card">Loading prompt catalog...</p>
+      </section>
+
+      <section id="catalog" class="catalog" aria-label="Prompt catalog" hidden></section>
+    </main>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden></div>
+    <section
+      class="modal"
+      id="templateModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+      hidden
+    >
+      <article class="modal__panel">
+        <header class="modal__header">
+          <div>
+            <p class="modal__phase" id="modalPhase"></p>
+            <h2 id="modalTitle">Prompt editor</h2>
+          </div>
+          <button class="icon-button" type="button" id="closeModal" aria-label="Close prompt editor">
+            <span aria-hidden="true">x</span>
+          </button>
+        </header>
+
+        <div class="modal__body">
+          <section class="placeholder-column" aria-labelledby="placeholderTitle">
+            <div class="modal-section-heading">
+              <h3 id="placeholderTitle">Placeholders</h3>
+              <ul class="tag-list" id="modalTags" aria-label="Template tags"></ul>
+            </div>
+            <form id="placeholderForm" class="placeholder-form"></form>
           </section>
 
-          <section id="catalog" class="catalog" aria-label="Prompt catalog" hidden></section>
+          <section class="preview-column" aria-labelledby="previewTitle">
+            <div class="section-heading">
+              <h3 id="previewTitle">Prompt preview</h3>
+              <button class="copy-button" type="button" id="copyPrompt">Copy</button>
+            </div>
+            <div id="promptPreview" class="prompt-preview" aria-label="Generated prompt preview"></div>
+            <textarea id="generatedPrompt" class="visually-hidden" readonly aria-label="Generated prompt text"></textarea>
+            <p class="feedback" id="copyFeedback" aria-live="polite"></p>
+          </section>
         </div>
-
-        <aside class="editor-pane" id="templateEditor" aria-labelledby="editorTitle">
-          <div class="editor-empty" id="editorEmpty">
-            <h2 id="editorTitle">Prompt editor</h2>
-            <p>Select a template to fill placeholders inline and generate a prompt.</p>
-          </div>
-
-          <article class="editor-content" id="editorContent" hidden>
-            <header class="editor-header">
-              <div>
-                <p class="editor-phase" id="editorPhase"></p>
-                <h2 id="selectedTemplateTitle">Prompt editor</h2>
-              </div>
-              <button class="icon-button" type="button" id="closeEditor" aria-label="Clear selected template">
-                <span aria-hidden="true">x</span>
-              </button>
-            </header>
-
-            <section class="editor-tags" aria-label="Template tags">
-              <ul class="tag-list" id="editorTags"></ul>
-            </section>
-
-            <section aria-labelledby="generatedPromptTitle" class="generated-section">
-              <div class="section-heading">
-                <h3 id="generatedPromptTitle">Generated prompt</h3>
-                <button class="copy-button" type="button" id="copyPrompt">Copy</button>
-              </div>
-              <div
-                id="inlinePrompt"
-                class="inline-prompt"
-                role="group"
-                aria-label="Generated prompt with editable placeholders"
-              ></div>
-              <textarea id="generatedPrompt" class="visually-hidden" readonly aria-label="Generated prompt text"></textarea>
-              <p class="feedback" id="copyFeedback" aria-live="polite"></p>
-            </section>
-          </article>
-        </aside>
-      </div>
-    </main>
+      </article>
+    </section>
   </body>
 </html>
