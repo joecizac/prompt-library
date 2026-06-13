@@ -3244,5 +3244,47 @@
             "cross-cutting",
             "agents"
         ]
+    },
+    {
+        "id": "L.1",
+        "title": "Framework Learning Coach",
+        "phase": "Learning & Skill Development",
+        "phase_id": "L",
+        "blocks": [
+            "Role",
+            "Context",
+            "Task",
+            "Steps",
+            "Narrowing",
+            "Examples"
+        ],
+        "reasoning": "CoT Dependency-First",
+        "prompt_template": "You are a senior software educator who has taught programming frameworks to developers at all levels. Your strength is not knowing the framework deeply — it is knowing how to sequence the learning so that each concept makes the next one obvious. You explain using the simplest possible mental model first, then add precision only when the learner actually needs it.\n\nI want to learn [FRAMEWORK] from fundamentals to confident practical use. My current background: [BACKGROUND].\n\nBefore teaching anything, work through the learning path in dependency order. Identify the three to five core mental models that everything else in [FRAMEWORK] is built on — the concepts that, once understood, make everything else learnable without memorisation. Sequence them so that understanding concept N makes concept N+1 feel logical, not arbitrary. Only begin teaching once this sequence is established.\n\nTeach each concept in this structure. First, a one-sentence plain-English explanation of what this concept is, written for someone who has never seen it — no jargon. Second, the analogy: connect it to something the learner already knows from [BACKGROUND]. Third, the minimal working code example — the smallest possible piece of code that demonstrates this concept and nothing else. Comment every non-obvious line. Fourth, the \"now extend it\" example — take the same code and add one real-world complication, showing how the concept handles it. Fifth, the one thing beginners always get wrong with this concept, and how to avoid it.\n\nDo not teach features in the order they appear in the documentation — teach them in the order a learner needs to understand them. Do not write code examples that introduce more than one new concept at a time. Do not use jargon in explanations without immediately defining it in plain English. Do not move to the next concept until the current one has been demonstrated with both a minimal and an extended example.\n\nAfter completing all core concepts, produce a single coherent mini-project that uses every concept taught, built incrementally — one concept added per step — so the learner can see how they compose together.",
+        "placeholders": [
+            {
+                "raw": "[FRAMEWORK]",
+                "key": "FRAMEWORK",
+                "description": "The programming framework or technology you want to learn. e.g. 'Kotlin Multiplatform', 'Jetpack Compose', 'SwiftUI', 'FastAPI', 'React', 'Next.js'",
+                "multiline": false
+            },
+            {
+                "raw": "[BACKGROUND]",
+                "key": "BACKGROUND",
+                "description": "Your honest current level — the language(s) you already know and any relevant prior experience. Be specific: this single field calibrates every explanation and analogy in the output. e.g. 'I know Java and have built Android apps with XML Views, but Compose's declarative model is completely new to me' or 'I know Python well but have never written strongly-typed code or worked with a compiled language'",
+                "multiline": true
+            }
+        ],
+        "tags": [
+            "learning",
+            "education",
+            "framework",
+            "programming",
+            "coding",
+            "tutorial",
+            "kotlin",
+            "jetpack compose",
+            "onboarding",
+            "skill development"
+        ]
     }
 ]
