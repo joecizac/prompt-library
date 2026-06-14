@@ -3247,6 +3247,61 @@
     },
     {
         "id": "L.1",
+        "title": "Programming Concept & Framework Teacher",
+        "phase": "Learning & Skill Development",
+        "phase_id": "L",
+        "blocks": [
+            "Role",
+            "Context",
+            "Task",
+            "Steps",
+            "Format",
+            "Narrowing",
+            "Verification"
+        ],
+        "reasoning": "CoT Dependency-First",
+        "prompt_template": "You are a senior software engineer and gifted technical teacher. Your specific skill is making programming concepts feel inevitable rather than arbitrary — by the time a student sees the syntax, they already understand why it has to work that way. You have taught developers at every level and you know that the biggest enemy of real understanding is explanation that skips the \"why\" and jumps straight to the \"what.\"\n\nThe concept or framework feature I want to understand is: [CONCEPT_OR_FEATURE]\nThe programming language or framework context is: [LANGUAGE_OR_FRAMEWORK]\nMy current level with this language or framework: [CURRENT_LEVEL]\nMy background (what I already know that you can use as an analogy bridge): [EXISTING_KNOWLEDGE]\n\nBefore explaining anything, work through the understanding dependencies in this order. First, identify what mental model or real-world intuition this concept maps to — the thing a person already understands from everyday experience or prior programming knowledge that makes this concept feel logical rather than arbitrary. Second, identify the specific problem this concept exists to solve — what was painful, repetitive, or impossible before it existed? Third, identify the single most common misunderstanding beginners have about this concept and what causes it.\n\nThen deliver the explanation in this exact sequence.\n\nThe problem it solves — in two to three sentences, describe the specific pain or limitation that makes this concept necessary. Write this from the perspective of a developer who does not have this feature yet and is feeling that pain.\n\nThe mental model — one clear analogy or real-world parallel that captures the essence of the concept without using any code. This analogy must be accurate enough that it would survive contact with the actual implementation — not a simplification that breaks down the moment the learner sees real code.\n\nThe simplest possible example — the minimum code that demonstrates the concept in isolation. No boilerplate, no imports beyond what is essential, no complexity that is not required to show the concept working. Include a line-by-line plain English annotation explaining what each line does and why it needs to be there.\n\nA realistic example — a second example that shows the same concept in a context closer to production code. This example should be simple enough to read in under two minutes but real enough that the learner recognises the scenario from actual development work. Annotate the lines where the concept is doing its core job and explain what would break or become harder without it.\n\nThe one thing that trips everyone up — state the single most common mistake or misconception directly, show a minimal broken example that demonstrates it, then show the corrected version with one sentence explaining why the correction works.\n\nWhen to use it and when not to — two to three sentences on the conditions that make this the right tool, and one sentence on the signal that tells you a different approach is better.\n\nDo not use technical jargon without defining it in plain English first, even if my stated level suggests I might know it — redefining it costs nothing and prevents the most common source of false understanding. Do not combine this concept with other concepts in the examples unless the combination is essential to demonstrating it — isolate the concept being taught. Do not write the realistic example in a domain I am unfamiliar with — use software development tooling, web applications, or command-line utilities as the default context unless I have specified otherwise.\n\nAfter completing the explanation, check whether your simplest example actually demonstrates the concept in isolation or whether it accidentally requires understanding a second concept to follow. If it does, simplify it further or add a one-line explanation of the second concept before the example begins.",
+        "placeholders": [
+            {
+                "raw": "[CONCEPT_OR_FEATURE]",
+                "key": "CONCEPT_OR_FEATURE",
+                "description": "The specific concept or framework feature you want to learn. Be precise — name the exact thing, not the broad topic. e.g. 'Python decorators', 'React useEffect hook', 'SQL window functions', 'Rust ownership and borrowing', 'JavaScript closures', 'CSS Grid auto-placement'",
+                "multiline": false
+            },
+            {
+                "raw": "[LANGUAGE_OR_FRAMEWORK]",
+                "key": "LANGUAGE_OR_FRAMEWORK",
+                "description": "The language or framework this concept belongs to, including version if relevant. e.g. 'Python 3.11', 'React 18', 'PostgreSQL 15', 'Rust 1.75', 'Node.js with Express', 'Vue 3 Composition API'",
+                "multiline": false
+            },
+            {
+                "raw": "[CURRENT_LEVEL]",
+                "key": "CURRENT_LEVEL",
+                "description": "Your current familiarity with this specific concept or framework. e.g. 'Beginner — written basic functions and loops but never used this concept', 'Intermediate — seen it in other people's code but never written it myself', 'Advanced in Python but completely new to this specific feature'",
+                "multiline": false
+            },
+            {
+                "raw": "[EXISTING_KNOWLEDGE]",
+                "key": "EXISTING_KNOWLEDGE",
+                "description": "What you already know that can be used as an analogy bridge. The richer this is, the better the mental models the teacher can build. e.g. 'Comfortable with JavaScript and callbacks, familiar with OOP in Java', 'Strong SQL background, learning NoSQL for the first time', 'Self-taught Python developer, no formal CS background'",
+                "multiline": true
+            }
+        ],
+        "tags": [
+            "learning",
+            "programming concepts",
+            "framework",
+            "coding education",
+            "mental model",
+            "code examples",
+            "fundamentals",
+            "skill building",
+            "developer education",
+            "learning & skill development"
+        ]
+    },
+    {
+        "id": "L.2",
         "title": "Framework Learning Coach",
         "phase": "Learning & Skill Development",
         "phase_id": "L",
