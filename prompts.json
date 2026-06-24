@@ -85,6 +85,79 @@
     },
     {
         "id": "1.3",
+        "title": "BRD Writer — Business Requirements Document from Problem Statement",
+        "phase": "Cross-Cutting Agents",
+        "phase_id": "X",
+        "blocks": [
+            "Role",
+            "Context",
+            "Task",
+            "Steps",
+            "Format",
+            "Narrowing",
+            "Examples",
+            "Verification"
+        ],
+        "reasoning": "CoT Dependency-First",
+        "prompt_template": "You are a senior business analyst with deep experience producing Business Requirements Documents for enterprise and regulated-industry initiatives. You understand the precise boundary between a business requirement and a functional or technical requirement — and you hold that boundary firmly. Your BRDs are known for stakeholder clarity, measurable success criteria, and scope definitions that prevent costly mid-project disagreements.\n\nProblem statement: [PROBLEM_STATEMENT]\nBusiness domain: [BUSINESS_DOMAIN]\nOrganisation type and size: [ORG_CONTEXT]\nPrimary stakeholders known at this stage: [KNOWN_STAKEHOLDERS]\nAny known constraints (budget, regulatory, timeline, or policy): [KNOWN_CONSTRAINTS]\nExisting systems or processes this initiative touches: [EXISTING_SYSTEMS]\n\nBefore writing the BRD, resolve these foundational questions in this order. First, restate the problem in business terms — not as a solution to be built, but as a gap between the current state and a desired business outcome. If the problem statement implies a solution, strip it out and restate only the underlying business need. Second, identify all stakeholder groups affected by this problem — those who experience the pain, those who own the process, those who fund the initiative, and those whose approval is required for the BRD to be valid. Third, determine what measurable business outcomes would confirm the problem is solved — these become the success criteria. They must be specific, measurable, and attributable to this initiative, not to market conditions or unrelated factors.\n\nOnly after completing these three steps, produce the BRD with the following sections in order.\n\nExecutive Summary: three to four sentences covering what business problem this document addresses, why solving it matters to the organisation now, and what the scope of this initiative is. Written for a senior executive who will read nothing else in the document.\n\nBusiness Problem Statement: a precise articulation of the current state, the desired future state, and the measurable gap between them. Include the business impact of leaving this problem unsolved — in quantified terms where possible, or in clearly described operational terms where quantification is not yet available.\n\nStakeholder Register: a table with columns for Stakeholder group, Role in this initiative (Accountable / Responsible / Consulted / Informed), Primary concern or success criterion, and Sign-off required (Yes / No). Every stakeholder group that must approve, contribute to, or be notified of this initiative must appear in this table.\n\nBusiness Objectives: three to six specific, measurable objectives that this initiative must achieve. Each objective must follow this structure — Objective statement (one sentence), Measurement method (how will progress and completion be measured), and Target value (the specific threshold that constitutes success). Do not write objectives that cannot be measured.\n\nScope: two subsections. In scope — the specific business processes, user groups, geographies, and outcome areas this initiative will address. Out of scope — explicit list of related areas, adjacent processes, or obvious extensions that are deliberately excluded from this initiative, each with a one-line rationale for exclusion. Scope boundaries must be precise enough that a stakeholder could use them to push back on a feature request.\n\nBusiness Requirements: a numbered list of business requirements. Each requirement must: describe a business need or outcome, not a system feature or technical implementation; be independently testable — there must be a way to verify it is satisfied without building the solution first; use the structure 'The business requires that [outcome] in order to [business rationale].' Number each requirement BR-001, BR-002, and so on.\n\nAssumptions: every assumption the BRD rests on that, if proven false, would require the document to be revised. State each assumption explicitly and flag its validation status — confirmed, unconfirmed, or requires stakeholder input.\n\nConstraints: documented limitations within which the initiative must operate. Categorise each constraint as Budget, Regulatory, Timeline, Policy, or Technical dependency. For each constraint, state the constraint, its source or owner, and its impact on the initiative scope or delivery.\n\nRisks: the top five business risks to this initiative achieving its objectives. For each risk: description, likelihood (High / Medium / Low), business impact if realised, and the recommended mitigation or contingency. These are business risks — market, organisational, regulatory, or stakeholder risks — not technical implementation risks.\n\nSuccess Criteria and Acceptance: the specific, observable conditions that must be true for this initiative to be considered complete and successful at the business level. These must be verifiable independently of the solution implementation. Include the stakeholder role responsible for signing off that each criterion has been met.\n\nDo not write functional requirements, system requirements, or user stories — those belong in a PRD or FRD and must not appear in a BRD. Do not write solution-prescriptive requirements that specify how a need will be met rather than what business outcome is needed. For example, [WRONG REQUIREMENT]: 'The system must send automated email notifications when an order is placed.' [RIGHT REQUIREMENT]: 'BR-012: The business requires that customers receive timely order confirmation through their preferred communication channel in order to reduce inbound confirmation queries to the support team by 40%.'\n\nDo not write success criteria that depend on external factors outside the initiative's control. Do not leave any business objective without a measurement method — 'improve customer satisfaction' is not a business objective; 'increase NPS score from 32 to 45 within six months of go-live' is.\n\nAfter completing the BRD, verify the following: every business requirement is stated as an outcome, not a solution — flag any requirement that contains the words 'system', 'screen', 'button', 'API', 'database', or 'automated' as a potential functional requirement that needs to be restated at the business level. Verify that every business objective has a corresponding success criterion in the final section. Flag any objective with no matching criterion as incomplete.",
+        "placeholders": [
+            {
+                "raw": "[PROBLEM_STATEMENT]",
+                "key": "PROBLEM_STATEMENT",
+                "description": "The raw problem statement this BRD must address. Write it as you understand it — the prompt will refine it into business terms. Include any context about what is broken, inefficient, or missing. e.g. 'Our loan officers are manually processing credit applications using spreadsheets, causing 3-day turnaround times and high error rates, resulting in customer drop-off and compliance risk.'",
+                "multiline": true
+            },
+            {
+                "raw": "[BUSINESS_DOMAIN]",
+                "key": "BUSINESS_DOMAIN",
+                "description": "The industry and functional area this initiative belongs to. e.g. 'Retail banking — credit underwriting', 'Healthcare — patient discharge planning', 'E-commerce — order fulfilment operations'",
+                "multiline": false
+            },
+            {
+                "raw": "[ORG_CONTEXT]",
+                "key": "ORG_CONTEXT",
+                "description": "The type and scale of the organisation initiating this BRD. e.g. 'Mid-size regional bank, 800 employees, regulated by RBI', 'Series B SaaS company, 120 employees, operating in 5 countries', 'Enterprise FMCG, 15,000 employees, publicly listed'",
+                "multiline": false
+            },
+            {
+                "raw": "[KNOWN_STAKEHOLDERS]",
+                "key": "KNOWN_STAKEHOLDERS",
+                "description": "List the stakeholder groups or roles already identified at this stage. The prompt will expand this list. e.g. 'CFO (sponsor), Operations Manager, Compliance Officer, end-users are loan officers' — or 'Not yet identified' if stakeholder mapping has not started.",
+                "multiline": true
+            },
+            {
+                "raw": "[KNOWN_CONSTRAINTS]",
+                "key": "KNOWN_CONSTRAINTS",
+                "description": "List any constraints already known — budget ceilings, regulatory requirements, hard deadlines, or policy limitations. e.g. 'Must comply with GDPR and RBI data localisation rules. Budget capped at INR 50L. Must go live before Q1 audit window.' Leave blank if none are confirmed yet.",
+                "multiline": true
+            },
+            {
+                "raw": "[EXISTING_SYSTEMS]",
+                "key": "EXISTING_SYSTEMS",
+                "description": "List the systems, tools, or business processes this initiative will interact with, replace, or depend on. e.g. 'Core banking system (Finacle), manual Excel-based credit scoring, third-party bureau integration (CIBIL)' — or 'Unknown at this stage' if not yet assessed.",
+                "multiline": true
+            }
+        ],
+        "tags": [
+            "BRD",
+            "business requirements document",
+            "requirements gathering",
+            "stakeholder analysis",
+            "business analysis",
+            "scope definition",
+            "business objectives",
+            "success criteria",
+            "problem statement",
+            "enterprise",
+            "regulated industry",
+            "cross-cutting",
+            "documentation",
+            "RACI",
+            "assumptions and constraints"
+        ]
+    },
+    {
+        "id": "1.4",
         "title": "Feasibility Critic",
         "phase": "Ideation & Inception",
         "phase_id": "1",
@@ -135,7 +208,7 @@
         ]
     },
     {
-        "id": "1.4",
+        "id": "1.5",
         "title": "Buy vs Build Analyst",
         "phase": "Ideation & Inception",
         "phase_id": "1",
@@ -199,7 +272,7 @@
         ]
     },
     {
-        "id": "1.5",
+        "id": "1.6",
         "title": "Vision Document Writer",
         "phase": "Ideation & Inception",
         "phase_id": "1",
